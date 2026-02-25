@@ -8392,7 +8392,7 @@ return A.x(k.rV("assistanceBox",o),$async$A8)
 case 4:m=b
 s=5
 return A.x(k.rV("beneficiaryBox",p),$async$A8)
-case 5:p=A.aVd("http://localhost:3000/api",B.p9,A.aA(["Content-Type","application/json","Accept","application/json"],t.N,t.z),B.p9)
+case 5:p=A.aVd("https://ngobackend.virtuohr.com/api",B.p9,A.aA(["Content-Type","application/json","Accept","application/json"],t.N,t.z),B.p9)
 k=new A.Qd(A.b([B.EE],t.OB))
 k.S(k,B.Or)
 l=new A.OK($,k,$,new A.acb(51200),!1)
