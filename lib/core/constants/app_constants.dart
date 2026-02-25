@@ -1,6 +1,6 @@
 class AppConstants {
   static const String appName = 'NGO Assistance System';
-  static const String baseUrl = 'http://localhost:3000/api';
+  static const String baseUrl = 'https://ngobackend.virtuohr.com/api';
 
   // API Endpoints
   static const String loginEndpoint = '/auth/login';

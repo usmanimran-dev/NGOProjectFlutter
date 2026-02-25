@@ -43,7 +43,7 @@ Future<void> init() async {
   // Configure Dio
   final dio = Dio(
     BaseOptions(
-      baseUrl: kIsWeb ? 'http://localhost:3000/api' : 'http://10.0.2.2:3000/api',
+      baseUrl: 'https://ngobackend.virtuohr.com/api',
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
       headers: {
