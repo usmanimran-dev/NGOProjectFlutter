@@ -1,0 +1,50 @@
+import 'package:equatable/equatable.dart';
+import '../../../../domain/entities/beneficiary_entity.dart';
+
+abstract class BeneficiaryState extends Equatable {
+  const BeneficiaryState();
+  @override
+  List<Object?> get props => [];
+}
+
+class BeneficiaryInitial extends BeneficiaryState {}
+class BeneficiaryLoading extends BeneficiaryState {}
+class BeneficiaryLoaded extends BeneficiaryState {
+  final List<BeneficiaryEntity> beneficiaries;
+  const BeneficiaryLoaded(this.beneficiaries);
+  @override
+  List<Object?> get props => [beneficiaries];
+}
+class BeneficiaryVerified extends BeneficiaryState {
+  final BeneficiaryEntity beneficiary;
+  const BeneficiaryVerified(this.beneficiary);
+  @override
+  List<Object?> get props => [beneficiary];
+}
+class BeneficiaryError extends BeneficiaryState {
+  final String message;
+  const BeneficiaryError(this.message);
+  @override
+  List<Object?> get props => [message];
+}
+
+abstract class BeneficiaryEvent extends Equatable {
+  const BeneficiaryEvent();
+  @override
+  List<Object?> get props => [];
+}
+
+class VerifyCnicRequested extends BeneficiaryEvent {
+  final String cnic;
+  const VerifyCnicRequested(this.cnic);
+  @override
+  List<Object?> get props => [cnic];
+}
+
+class LoadBeneficiariesRequested extends BeneficiaryEvent {
+  final int year;
+  final int month;
+  const LoadBeneficiariesRequested(this.year, this.month);
+  @override
+  List<Object?> get props => [year, month];
+}
