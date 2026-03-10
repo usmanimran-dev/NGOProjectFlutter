@@ -145,28 +145,36 @@ class _MainShellState extends State<MainShell> {
     if (state is! AuthAuthenticated) return _allNavItems;
     final role = state.user.role;
     switch (role) {
-      case UserRole.ngoStaff:
-        // Staff: Dashboard, Beneficiaries (register), Assistance, Entitlements, Analytics
+      case UserRole.ngoStaff: // NGO Operation
+        // Can Only Create Beneficiary, assign vendor to Beneficiary
         return _allNavItems.where((item) =>
           item.screenIndex == 0 || // Dashboard
-          item.screenIndex == 1 || // Beneficiaries (register & manage)
-          item.screenIndex == 2 || // Assistance (manage cases)
-          item.screenIndex == 4 || // Entitlements (monitor cycles)
-          item.screenIndex == 7    // Analytics (reports)
+          item.screenIndex == 1 || // Beneficiaries (Create)
+          item.screenIndex == 2    // Assistance (Assign Vendor to Beneficiary)
         ).toList();
+
+      case UserRole.fieldVerifier: // NGO Field Verifier
+        // Only verify & Approved Beneficiary
+        return _allNavItems.where((item) =>
+          item.screenIndex == 0 || // Dashboard
+          item.screenIndex == 1 || // Beneficiaries (Verify)
+          item.screenIndex == 5    // Approvals (Approve Beneficiary)
+        ).toList();
+
       case UserRole.vendorAdmin:
-      case UserRole.vendorUser:
-        // Vendor: Dashboard, Beneficiaries (assigned only), Analytics (own store report)
+        // All Access for Vendor Space
         return _allNavItems.where((item) =>
           item.screenIndex == 0 || // Dashboard
-          item.screenIndex == 1 || // Beneficiaries (assigned)
-          item.screenIndex == 7    // Analytics (own store)
+          item.screenIndex == 1 || // Beneficiaries
+          item.screenIndex == 4 || // Entitlements
+          item.screenIndex == 7    // Analytics / Reports
         ).toList();
-      case UserRole.fieldVerifier:
-        // Field Verifier: Dashboard, Beneficiaries (verification)
+
+      case UserRole.vendorUser:
+        // Staff Operations
         return _allNavItems.where((item) =>
           item.screenIndex == 0 || // Dashboard
-          item.screenIndex == 1    // Beneficiaries (verify)
+          item.screenIndex == 1    // Beneficiaries
         ).toList();
       default:
         // Admin / Super Admin: ALL items (approve, manage roles, onboard vendors, audit)
